@@ -1,21 +1,22 @@
 package com.example.springpizzaorderhandler.service;
 
-import com.example.springpizzaorderhandler.service.dto.*;
-import jakarta.annotation.PostConstruct;
+import com.example.springpizzaorderhandler.service.dto.order.*;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.amqp.core.Message;
-import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
+
+import static com.example.springpizzaorderhandler.common.Profile.PIZZA;
 
 @Log4j2
 @Service
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
+@Profile(PIZZA)
 public class PizzaOrderHandler {
 
     RabbitTemplate rabbitTemplate;
